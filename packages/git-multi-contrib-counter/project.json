@@ -1,0 +1,58 @@
+{
+  "name": "git-multi-contrib-counter",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/git-multi-contrib-counter/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/packages/git-multi-contrib-counter",
+        "format": ["cjs"],
+        "bundle": false,
+        "main": "packages/git-multi-contrib-counter/src/main.ts",
+        "tsConfig": "packages/git-multi-contrib-counter/tsconfig.app.json",
+        "assets": ["packages/git-multi-contrib-counter/src/assets"],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "git-multi-contrib-counter:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "git-multi-contrib-counter:build:development"
+        },
+        "production": {
+          "buildTarget": "git-multi-contrib-counter:build:production"
+        }
+      }
+    }
+  }
+}
