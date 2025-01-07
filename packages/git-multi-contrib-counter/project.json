@@ -13,7 +13,7 @@
         "platform": "node",
         "outputPath": "dist/packages/git-multi-contrib-counter",
         "format": ["cjs"],
-        "bundle": false,
+        "bundle": true,
         "main": "packages/git-multi-contrib-counter/src/main.ts",
         "tsConfig": "packages/git-multi-contrib-counter/tsconfig.app.json",
         "assets": ["packages/git-multi-contrib-counter/src/assets"],

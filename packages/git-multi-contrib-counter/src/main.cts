@@ -1,10 +1,10 @@
 import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
-import { updateReadme } from './tools/markdown.cts';
+import { updateReadme } from './tools/markdown.cjs';
 import {
   countMultiContributors,
   validateRepoDir,
-} from './tools/repo.tools.cts';
+} from './tools/repo.tools.cjs';
 
 const argv = yargs(hideBin(process.argv))
   .command(

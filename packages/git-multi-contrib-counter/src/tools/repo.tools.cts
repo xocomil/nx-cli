@@ -1,7 +1,7 @@
 import { execSync } from 'node:child_process';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { parseGitOutput } from './parser.cts';
+import { parseGitOutput } from './parser.cjs';
 
 export function validateRepoDir(repoDir: string): boolean {
   if (!fs.existsSync(repoDir)) {

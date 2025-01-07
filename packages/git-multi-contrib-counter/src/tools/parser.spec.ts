@@ -1,4 +1,4 @@
-import { parseGitOutput } from './parser.cts';
+import { parseGitOutput } from './parser.cjs';
 
 describe('parseGitOutput', () => {
   it('should return 0 when there are no contributors', () => {
