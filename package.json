@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {},
   "private": true,
+  "type": "module",
   "devDependencies": {
     "@eslint/js": "^9.8.0",
     "@nrwl/node": "^19.8.4",
