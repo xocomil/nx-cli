@@ -1,7 +1,10 @@
 import * as fs from 'node:fs';
 import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
-import { validateRepoDir } from './tools/repo.tools.mjs';
+import {
+  countMultiContributors,
+  validateRepoDir,
+} from './tools/repo.tools.mjs';
 
 const argv = yargs(hideBin(process.argv))
   .command(
@@ -24,13 +27,15 @@ const argv = yargs(hideBin(process.argv))
 console.log(argv);
 
 function main() {
-  const repoDir = fs.opendirSync(argv.repo_dir);
-
-  if (!validateRepoDir(repoDir)) {
+  if (!validateRepoDir(argv.repo_dir)) {
     console.log('Invalid repo dir');
 
     process.exit(1);
   }
+
+  const numberOfMultiContributors = countMultiContributors(argv.repo_dir);
+
+  console.log('Number of multi contributors:', numberOfMultiContributors);
 }
 
 main();

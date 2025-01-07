@@ -2,9 +2,15 @@ import { execSync } from 'node:child_process';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
-export function validateRepoDir(repoDir: fs.Dir): boolean {
-  if (!fs.existsSync(path.join(repoDir.path, '/packages'))) {
-    console.error(`${repoDir.path} does not contain a 'packages' directory`);
+export function validateRepoDir(repoDir: string): boolean {
+  if (!fs.existsSync(repoDir)) {
+    console.error(`${repoDir} does not exist`);
+
+    return false;
+  }
+
+  if (!fs.existsSync(path.join(repoDir, '/packages'))) {
+    console.error(`${repoDir} does not contain a 'packages' directory`);
 
     return false;
   }
@@ -12,8 +18,11 @@ export function validateRepoDir(repoDir: fs.Dir): boolean {
   return true;
 }
 
-export function countMultiContributors(repoDir: fs.Dir): number {
-  const contributors = execSync('git shortlog -s -n');
+export function countMultiContributors(repoDir: string): number {
+  const contributors = execSync(
+    'git whatchanged --pretty=format:"%an" --name-only -p packages',
+    { cwd: repoDir },
+  );
 
   console.log('contributors:', contributors.toString());
 
