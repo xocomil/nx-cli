@@ -1,6 +1,7 @@
 import { execSync } from 'node:child_process';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+import { parseGitOutput } from './parser.mjs';
 
 export function validateRepoDir(repoDir: string): boolean {
   if (!fs.existsSync(repoDir)) {
@@ -24,7 +25,7 @@ export function countMultiContributors(repoDir: string): number {
     { cwd: repoDir },
   );
 
-  console.log('contributors:', contributors.toString());
+  const count = parseGitOutput(contributors.toString());
 
-  return 0;
+  return count;
 }
