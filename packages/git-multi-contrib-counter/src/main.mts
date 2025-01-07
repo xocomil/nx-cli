@@ -1,6 +1,6 @@
-import * as fs from 'node:fs';
 import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
+import { updateReadme } from './tools/markdown.mjs';
 import {
   countMultiContributors,
   validateRepoDir,
@@ -36,6 +36,8 @@ function main() {
   const numberOfMultiContributors = countMultiContributors(argv.repo_dir);
 
   console.log('Number of multi contributors:', numberOfMultiContributors);
+
+  updateReadme(numberOfMultiContributors, argv.repo_dir);
 }
 
 main();

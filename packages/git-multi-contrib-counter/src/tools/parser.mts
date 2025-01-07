@@ -73,7 +73,7 @@ export function parseGitOutput(gitOutput: string): number {
   gitOutput.split('\n').forEach((line) => {
     contribution = parser(line, contribution);
 
-    console.log('line:', contribution);
+    // console.log('line:', contribution);
   });
 
   console.log('contributorsMap:');
